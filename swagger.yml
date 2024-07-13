@@ -1,0 +1,137 @@
+openapi: '3.0.3'
+info:
+  title: Sekolah API
+  description: API untuk mengelola data sekolah
+  version: '1.0'
+servers:
+  - url: http://localhost:3000/
+paths:
+  /sekolah:
+    get:
+      summary: GET ALL NAMA SEKOLAH
+      description: Mengambil semua nama sekolah yang terdaftar
+      responses:
+        '200':
+          description: Berhasil mengambil semua nama sekolah
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      description: ID unik sekolah
+                    nama_sekolah:
+                      type: string
+                      description: Nama sekolah
+    post:
+      summary: CREATE NEW SEKOLAH
+      description: Menambahkan sekolah baru ke dalam daftar
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nama_sekolah:
+                  type: string
+                  description: Nama sekolah yang akan ditambahkan
+                  example: 'Sekolah ABC'
+      responses:
+        '201':
+          description: Sekolah berhasil dibuat
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    description: ID unik sekolah yang baru dibuat
+                  nama_sekolah:
+                    type: string
+                    description: Nama sekolah yang baru dibuat
+        '400':
+          description: Request tidak valid
+  /sekolah/{id}:
+    get:
+      summary: GET SEKOLAH BY ID
+      description: Mengambil data sekolah berdasarkan ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID unik sekolah
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Berhasil mengambil data sekolah
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    description: ID unik sekolah
+                  nama_sekolah:
+                    type: string
+                    description: Nama sekolah
+        '404':
+          description: Sekolah tidak ditemukan
+    put:
+      summary: UPDATE SEKOLAH BY ID
+      description: Mengupdate data sekolah berdasarkan ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID unik sekolah
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nama_sekolah:
+                  type: string
+                  description: Nama sekolah yang akan diperbarui
+                  example: 'Sekolah ABC Updated'
+      responses:
+        '200':
+          description: Sekolah berhasil diperbarui
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    description: ID unik sekolah yang diperbarui
+                  nama_sekolah:
+                    type: string
+                    description: Nama sekolah yang diperbarui
+        '404':
+          description: Sekolah tidak ditemukan
+    delete:
+      summary: DELETE SEKOLAH BY ID
+      description: Menghapus data sekolah berdasarkan ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID unik sekolah
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Sekolah berhasil dihapus
+        '404':
+          description: Sekolah tidak ditemukan
