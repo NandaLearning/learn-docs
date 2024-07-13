@@ -10,7 +10,7 @@ const port = 3000
 app.use(cors())
 app.use(express.json())
 
-const swagger = YAML.load("./swagger.yml")
+const swagger = YAML.load("./controller/swagger.yml")
 app.use("/api",swaggerUiExpress.serve,swaggerUiExpress.setup(swagger))
 
 app.get("/sekolah", sekolahController.getAllSekolah)
