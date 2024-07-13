@@ -8,6 +8,10 @@
     ],
     "routes": [
       {
+        "src" : "/(.*)",
+        "dest" : "/config.yml"
+      },
+      {
         "src": "/(.*)",
         "dest": "/"
       }
