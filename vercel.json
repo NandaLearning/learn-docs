@@ -9,7 +9,7 @@
     "routes": [
       {
         "src": "/(.*)",
-        "dest": "/sekolah"
+        "dest": "index.js"
       }
     ]
 }
