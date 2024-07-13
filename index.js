@@ -1,8 +1,8 @@
 import express from "express"
 import cors from "cors"
 import { sekolahController } from "./controller/sekolahController.js"
-// import  YAML from "yamljs"
-// import swaggerUiExpress from "swagger-ui-express"
+import  YAML from "yamljs"
+import swaggerUiExpress from "swagger-ui-express"
 
 const app = express()
 const port = 3000
@@ -10,8 +10,8 @@ const port = 3000
 app.use(cors())
 app.use(express.json())
 
-// const swagger = YAML.load("./controller/swagger.yml")
-// app.use("/api",swaggerUiExpress.serve,swaggerUiExpress.setup(swagger))
+const swagger = YAML.load("config.yml")
+app.use("/api",swaggerUiExpress.serve,swaggerUiExpress.setup(swagger))
 
 app.get("/sekolah", sekolahController.getAllSekolah)
 app.get("/sekolah/:id", sekolahController.getSekolahById)
